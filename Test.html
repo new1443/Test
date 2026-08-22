@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أزهر سكيلز 2027 – I-COURSES</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ----- RESET & GLOBAL ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: #f4f7fb;
+            color: #1e2b3a;
+            line-height: 1.7;
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* وضع الطباعة (أبيض وأسود) */
+        body.print-mode {
+            background: white !important;
+            color: black !important;
+        }
+        body.print-mode .container {
+            background: white !important;
+            border: 1px solid #ccc !important;
+            box-shadow: none !important;
+        }
+        body.print-mode .card {
+            background: white !important;
+            border: 1px solid #aaa !important;
+            box-shadow: none !important;
+        }
+        body.print-mode .tab-btn {
+            background: #eee !important;
+            color: #222 !important;
+        }
+        body.print-mode .tab-btn.active {
+            background: #333 !important;
+            color: white !important;
+        }
+        body.print-mode .header .sub,
+        body.print-mode .badge {
+            background: #ddd !important;
+            color: #111 !important;
+        }
+        body.print-mode .dialogue-box {
+            background: #f9f9f9 !important;
+            border-left-color: #666 !important;
+        }
+        body.print-mode .word-table th {
+            background: #ddd !important;
+            color: #111 !important;
+        }
+        body.print-mode .word-table td {
+            border-bottom-color: #ccc !important;
+        }
+        body.print-mode .translation-block {
+            background: #f5f5f5 !important;
+            border-color: #bbb !important;
+        }
+        body.print-mode .passage {
+            background: #fafafa !important;
+            border-color: #ccc !important;
+        }
+        body.print-mode .paragraph-sample {
+            background: #f5f5f5 !important;
+            border-left-color: #555 !important;
+        }
+        body.print-mode .footer-note {
+            border-top-color: #aaa !important;
+        }
+        body.print-mode .toggle-print-btn {
+            background: #333 !important;
+            color: white !important;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 60px rgba(0, 20, 40, 0.08);
+            overflow: hidden;
+            padding: 30px 35px 45px;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        /* ----- HEADER ----- */
+        .header {
+            border-bottom: 2px solid #eef3f9;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0b2a4a;
+        }
+        .header h1 i {
+            color: #2a7de1;
+            margin-left: 12px;
+        }
+        .header .sub {
+            font-size: 1rem;
+            color: #4a5b6e;
+            background: #eef3f9;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .header .sub i {
+            margin-left: 8px;
+            color: #2a7de1;
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 35px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #2c4058;
+        }
+        .meta-info span i {
+            color: #2a7de1;
+            width: 22px;
+        }
+
+        /* زر تبديل الوضع */
+        .toggle-print-btn {
+            background: #0b2a4a;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(11, 42, 74, 0.15);
+        }
+        .toggle-print-btn:hover {
+            background: #1a3f62;
+            transform: scale(1.02);
+        }
+        .toggle-print-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* ----- TABS ----- */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e6edf5;
+            padding-bottom: 4px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4a5b6e;
+            border-radius: 40px 40px 0 0;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-btn i {
+            font-size: 1.1rem;
+        }
+        .tab-btn:hover {
+            background: #eef3f9;
+            color: #0b2a4a;
+        }
+        .tab-btn.active {
+            background: #0b2a4a;
+            color: white;
+            box-shadow: 0 4px 12px rgba(11, 42, 74, 0.15);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ----- CARDS & SECTIONS ----- */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0b2a4a;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title i {
+            color: #2a7de1;
+            font-size: 1.6rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px 28px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eaf0f6;
+            transition: 0.2s;
+        }
+        .card:hover {
+            border-color: #cbd9e9;
+            box-shadow: 0 8px 24px rgba(0, 20, 40, 0.04);
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0b2a4a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h3 i {
+            color: #2a7de1;
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e6edf5;
+            color: #1e3b5c;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            margin-right: 8px;
+        }
+
+        .dialogue-box {
+            background: #f8faff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0 8px;
+            border-right: 4px solid #2a7de1;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 2;
+            white-space: pre-wrap;
+            word-break: break-word;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .dialogue-box .speaker {
+            color: #0b2a4a;
+            font-weight: 600;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 16px;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ----- TABLES ----- */
+        .word-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            margin: 12px 0;
+        }
+        .word-table th {
+            background: #eef3f9;
+            color: #0b2a4a;
+            font-weight: 600;
+            padding: 10px 14px;
+            text-align: right;
+            border-bottom: 2px solid #d0ddee;
+        }
+        .word-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e6edf5;
+        }
+        .word-table tr:hover td {
+            background: #f8faff;
+        }
+
+        .translation-block {
+            background: #f8faff;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border: 1px solid #e6edf5;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .translation-block .en {
+            color: #0b2a4a;
+            font-weight: 500;
+        }
+        .translation-block .ar {
+            color: #1e5a7a;
+            font-weight: 500;
+        }
+        .translation-block .arrow {
+            color: #2a7de1;
+            margin: 0 10px;
+        }
+
+        .passage {
+            background: #fafcff;
+            padding: 20px 24px;
+            border-radius: 18px;
+            border: 1px solid #eaf0f6;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.8;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .passage p {
+            margin-bottom: 12px;
+        }
+
+        .question-list {
+            padding-right: 22px;
+            margin: 12px 0;
+        }
+        .question-list li {
+            margin-bottom: 8px;
+        }
+
+        .mcq-option {
+            display: block;
+            padding: 4px 24px 4px 0;
+        }
+        .mcq-option::before {
+            content: "○ ";
+            color: #2a7de1;
+            font-weight: 600;
+        }
+
+        .paragraph-sample {
+            background: #f8faff;
+            border-radius: 16px;
+            padding: 18px 22px;
+            border-right: 5px solid #2a7de1;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .paragraph-sample strong {
+            color: #0b2a4a;
+        }
+
+        .mt-2 {
+            margin-top: 14px;
+        }
+        .text-muted {
+            color: #5a6f84;
+        }
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+        .icon-circle {
+            display: inline-block;
+            width: 28px;
+            text-align: center;
+            color: #2a7de1;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            text-align: center;
+            color: #6a7f94;
+            font-size: 0.9rem;
+            border-top: 1px solid #e6edf5;
+            padding-top: 25px;
+        }
+        .footer-note i {
+            color: #2a7de1;
+        }
+
+        /* collapse toggle */
+        .collapse-toggle {
+            cursor: pointer;
+            user-select: none;
+            color: #2a7de1;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .collapse-toggle i {
+            transition: 0.2s;
+        }
+        .collapse-toggle.open i {
+            transform: rotate(180deg);
+        }
+        .collapse-body {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.35s ease;
+        }
+        .collapse-body.open {
+            max-height: 4000px;
+        }
+        .collapse-wrapper {
+            margin: 6px 0 12px;
+        }
+
+        /* طباعة */
+        @media print {
+            .toggle-print-btn {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .container {
+                box-shadow: none !important;
+                border: 1px solid #aaa !important;
+                background: white !important;
+            }
+            .card {
+                background: white !important;
+                border: 1px solid #aaa !important;
+                box-shadow: none !important;
+            }
+            .tab-btn {
+                background: #eee !important;
+                color: #222 !important;
+            }
+            .tab-btn.active {
+                background: #333 !important;
+                color: white !important;
+            }
+            .dialogue-box {
+                background: #f9f9f9 !important;
+                border-right-color: #666 !important;
+            }
+            .word-table th {
+                background: #ddd !important;
+                color: #111 !important;
+            }
+            .translation-block {
+                background: #f5f5f5 !important;
+                border-color: #bbb !important;
+            }
+            .passage {
+                background: #fafafa !important;
+                border-color: #ccc !important;
+            }
+            .paragraph-sample {
+                background: #f5f5f5 !important;
+                border-right-color: #555 !important;
+            }
+            .footer-note {
+                border-top-color: #aaa !important;
+            }
+            .header .sub,
+            .badge {
+                background: #ddd !important;
+                color: #111 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="appContainer">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div>
+                <h1><i class="fas fa-graduation-cap"></i> أزهر سكيلز 2027</h1>
+                <div class="meta-info">
+                    <span><i class="fas fa-user-tie"></i> أ/ محمد الجلاد</span>
+                    <span><i class="fas fa-globe"></i> I-COURSES</span>
+                    <span><i class="fas fa-calendar-alt"></i> العام الدراسي 2026–2027</span>
+                </div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+                <div class="sub">
+                    <i class="fas fa-book-open"></i> علمي &amp; أدبي
+                </div>
+                <button class="toggle-print-btn" id="togglePrintMode">
+                    <i class="fas fa-print"></i> وضع الطباعة
+                </button>
+            </div>
+        </header>
+
+        <!-- TABS -->
+        <div class="tabs" id="tabHeaders">
+            <button class="tab-btn active" data-tab="dialogues"><i class="fas fa-comments"></i> المحادثات</button>
+            <button class="tab-btn" data-tab="translation"><i class="fas fa-language"></i> الترجمة</button>
+            <button class="tab-btn" data-tab="reading"><i class="fas fa-book"></i> القراءة</button>
+            <button class="tab-btn" data-tab="paragraph"><i class="fas fa-pen-fancy"></i> البراجراف</button>
+        </div>
+
+        <!-- ============ TAB 1: DIALOGUES ============ -->
+        <div class="tab-content active" id="tab-dialogues">
+            <div class="section-title"><i class="fas fa-comment-dots"></i> إكمال المحادثة</div>
+
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> عن السؤال</h3>
+                <p><strong>المطلوب:</strong> إكمال <strong>4 فراغات</strong> في حوار بين شخصين.</p>
+                <p><strong>الدرجة:</strong> 4 درجات (علمي وأدبي).</p>
+                <p><strong>الخطوات:</strong></p>
+                <ol style="padding-right:22px; margin-top:6px;">
+                    <li><strong>اقرأ الموقف</strong> – من المتحدثان؟ وأين؟</li>
+                    <li><strong>استخدم سؤالاً أو إجابة منطقية</strong> – إذا كانت الجملة السابقة خبراً، اسأل؛ وإذا كانت سؤالاً، أجب.</li>
+                </ol>
+            </div>
+
+            <!-- جميع الحوارات -->
+            <div class="collapse-wrapper">
+                <div class="collapse-toggle open" onclick="toggleCollapse(this)">
+                    <i class="fas fa-chevron-down"></i> عرض جميع الحوارات (12)
+                </div>
+                <div class="collapse-body open" id="dialogueCollapse">
+                    <!-- حوار 1 -->
+                    <div class="card">
+                        <h3><i class="fas fa-utensils"></i> 1. علمي دور أول 2026 <span class="badge">خدمة الغرف</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> Room service. (1) ................................ ؟
+                            <br><span class="speaker">B:</span> Hello, I'd like to order dinner, please.
+                            <br><span class="speaker">A:</span> Certainly, (2) ................................ ؟
+                            <br><span class="speaker">B:</span> Room 261.
+                            <br><span class="speaker">A:</span> What would you like to order?
+                            <br><span class="speaker">B:</span> (3) ................................ .
+                            <br><span class="speaker">A:</span> Right. What time would like it sent to your room?
+                            <br><span class="speaker">B:</span> (4) ................................ .
+                            <br><span class="speaker">A:</span> Ok. That's fine. Will that be all?
+                            <br><span class="speaker">B:</span> Yes, thank you. Goodbye.</div>
+                    </div>
+                    <!-- حوار 2 -->
+                    <div class="card">
+                        <h3><i class="fas fa-shopping-basket"></i> 2. أدبي دور أول 2026 <span class="badge">بيض وحليب</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> I'd like some eggs, please.
+                            <br><span class="speaker">B:</span> (1) ................................ ؟
+                            <br><span class="speaker">A:</span> Five, please. (2) ................................ ؟
+                            <br><span class="speaker">B:</span> Yes. How much milk do you want?
+                            <br><span class="speaker">A:</span> (3) ................................ .
+                            <br><span class="speaker">B:</span> That's 50 pounds.
+                            <br><span class="speaker">A:</span> (4) ................................ .
+                            <br><span class="speaker">B:</span> Thank you so much.</div>
+                    </div>
+                    <!-- حوار 3 -->
+                    <div class="card">
+                        <h3><i class="fas fa-flask"></i> 3. علمي تجريبي 2026 <span class="badge">الاستعداد للامتحان</span></h3>
+                        <div class="dialogue-box"><span class="speaker">Sara:</span> Good morning. How are you?
+                            <br><span class="speaker">Mona:</span> Good morning. I'm fine. (1) ................................ ؟
+                            <br><span class="speaker">Sara:</span> I'm good. What are you doing at the moment?
+                            <br><span class="speaker">Mona:</span> (2) ................................ .
+                            <br><span class="speaker">Sara:</span> Oh, I see. When is your science exam?
+                            <br><span class="speaker">Mona:</span> It is scheduled for tomorrow morning.
+                            <br><span class="speaker">Sara:</span> That's soon! Do you feel prepared for it?
+                            <br><span class="speaker">Mona:</span> Not really. I think I'm not ready for it. I still need to review.
+                            <br><span class="speaker">Sara:</span> Would you like me to help you with anything?
+                            <br><span class="speaker">Mona:</span> That would be great, (3) ................................ ؟
+                            <br><span class="speaker">Sara:</span> Of course! Let's study together this hard lesson.
+                            <br><span class="speaker">Mona:</span> Thank you so much (4) ................................ .</div>
+                    </div>
+                    <!-- حوار 4 -->
+                    <div class="card">
+                        <h3><i class="fas fa-book-reader"></i> 4. أدبي تجريبي 2026 <span class="badge">المكتبة والكواكب</span></h3>
+                        <div class="dialogue-box"><span class="speaker">Ali:</span> Good morning Mazen, how are you today?
+                            <br><span class="speaker">Mazen:</span> I'm fine, thank you. How about you?
+                            <br><span class="speaker">Ali:</span> I'm good. (1) ................................ ؟
+                            <br><span class="speaker">Mazen:</span> I'm going to the library. Do you want to come with me?
+                            <br><span class="speaker">Ali:</span> That sounds nice. (2) ................................ ؟
+                            <br><span class="speaker">Mazen:</span> I want a book about space. Have you ever read about planets?
+                            <br><span class="speaker">Ali:</span> (3) ................................ which planet do you like the most?
+                            <br><span class="speaker">Mazen:</span> (4) ................................ because Jupiter is the biggest planet in the solar system.</div>
+                    </div>
+                    <!-- حوار 5 -->
+                    <div class="card">
+                        <h3><i class="fas fa-store"></i> 5. علمي دور أول 2025 <span class="badge">السوبر ماركت</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> (1) ................................ ؟
+                            <br><span class="speaker">B:</span> I am going to the supermarket.
+                            <br><span class="speaker">A:</span> What are you going to buy?
+                            <br><span class="speaker">B:</span> (2) ................................ ؟
+                            <br><span class="speaker">A:</span> (3) ................................ ؟
+                            <br><span class="speaker">B:</span> Yes, of course.
+                            <br><span class="speaker">A:</span> How often do you go shopping?
+                            <br><span class="speaker">B:</span> (4) ................................ .</div>
+                    </div>
+                    <!-- حوار 6 -->
+                    <div class="card">
+                        <h3><i class="fas fa-user-cog"></i> 6. أدبي دور أول 2025 <span class="badge">ميكانيكي</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> (1) ................................ ؟
+                            <br><span class="speaker">B:</span> He's a mechanic. He loves his job.
+                            <br><span class="speaker">A:</span> (2) ................................ ؟
+                            <br><span class="speaker">B:</span> Sometimes, when he works long hours.
+                            <br><span class="speaker">A:</span> How much does he earn?
+                            <br><span class="speaker">B:</span> (3) ................................ .
+                            <br><span class="speaker">A:</span> When does he come home?
+                            <br><span class="speaker">B:</span> (4) ................................ .</div>
+                    </div>
+                    <!-- حوار 7 -->
+                    <div class="card">
+                        <h3><i class="fas fa-user-graduate"></i> 7. أدبي دور ثاني 2025 <span class="badge">واجب أحمد</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> Where is Ahmed?
+                            <br><span class="speaker">B:</span> (1) ................................ .
+                            <br><span class="speaker">A:</span> (2) ................................ ؟
+                            <br><span class="speaker">B:</span> He is doing his homework.
+                            <br><span class="speaker">A:</span> (3) ................................ ؟
+                            <br><span class="speaker">B:</span> His father.
+                            <br><span class="speaker">A:</span> What time does he go to bed?
+                            <br><span class="speaker">B:</span> (4) ................................ .</div>
+                    </div>
+                    <!-- حوار 8 -->
+                    <div class="card">
+                        <h3><i class="fas fa-suitcase"></i> 8. علمي دور ثاني 2025 <span class="badge">تجهيز الحقيبة</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> Why are you packing your suitcase?
+                            <br><span class="speaker">B:</span> (1) ................................ .
+                            <br><span class="speaker">A:</span> Where are you going?
+                            <br><span class="speaker">B:</span> (2) ................................ .
+                            <br><span class="speaker">A:</span> (3) ................................ ؟
+                            <br><span class="speaker">B:</span> At 5 a.m.
+                            <br><span class="speaker">A:</span> (4) ................................ ؟
+                            <br><span class="speaker">B:</span> For two weeks.</div>
+                    </div>
+                    <!-- حوار 9 -->
+                    <div class="card">
+                        <h3><i class="fas fa-pizza-slice"></i> 9. علمي دور أول 2024 <span class="badge">طلب وجبة</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> Said's takeaway. Can I help you?
+                            <br><span class="speaker">B:</span> (1) ................................ .
+                            <br><span class="speaker">A:</span> (2) ................................ ؟
+                            <br><span class="speaker">B:</span> Can I have a roast chicken and salad?
+                            <br><span class="speaker">A:</span> (3) ................................ ؟
+                            <br><span class="speaker">B:</span> No, that's all, thanks
+                            <br><span class="speaker">A:</span> (4) ................................ ؟
+                            <br><span class="speaker">B:</span> It's 5 Shoubra Street and the telephone number is 09650807.</div>
+                    </div>
+                    <!-- حوار 10 -->
+                    <div class="card">
+                        <h3><i class="fas fa-film"></i> 10. أدبي دور أول 2024 <span class="badge">السينما</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> How about going to the cinema tonight?
+                            <br><span class="speaker">B:</span> Tonight? (1) ................................ ؟
+                            <br><span class="speaker">A:</span> Why not?
+                            <br><span class="speaker">B:</span> I have a class until eight.
+                            <br><span class="speaker">A:</span> That's ok. (2) ................................ ؟
+                            <br><span class="speaker">B:</span> (3) ................................ .
+                            <br><span class="speaker">A:</span> Let's meet at eight twenty at the square. (4) ................................ ؟
+                            <br><span class="speaker">B:</span> Great idea! I'm always hungry after my class!</div>
+                    </div>
+                    <!-- حوار 11 -->
+                    <div class="card">
+                        <h3><i class="fas fa-plane"></i> 11. علمي دور ثاني 2024 <span class="badge">رحلة باريس</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> Hey Ali! (1) ................................ ؟ I haven't seen you for ages.
+                            <br><span class="speaker">B:</span> I know, (2) ................................ .
+                            <br><span class="speaker">A:</span> When did you come back?
+                            <br><span class="speaker">B:</span> Well, I was in Paris for four months. I got back last week.
+                            <br><span class="speaker">A:</span> (3) ................................ ؟
+                            <br><span class="speaker">B:</span> Business. (4) ................................ .
+                            <br><span class="speaker">A:</span> I hope it was a successful training programme.</div>
+                    </div>
+                    <!-- حوار 12 -->
+                    <div class="card">
+                        <h3><i class="fas fa-user-friends"></i> 12. أدبي دور ثاني 2024 <span class="badge">ابن عم أحمد</span></h3>
+                        <div class="dialogue-box"><span class="speaker">A:</span> This is my cousin, Ahmed.
+                            <br><span class="speaker">B:</span> (1) ................................ ؟
+                            <br><span class="speaker">A:</span> He is a teacher.
+                            <br><span class="speaker">B:</span> Where does he come from?
+                            <br><span class="speaker">A:</span> (2) ................................ ؟
+                            <br><span class="speaker">B:</span> How old is he?
+                            <br><span class="speaker">A:</span> (3) ................................ .
+                            <br><span class="speaker">B:</span> (4) ................................ ؟
+                            <br><span class="speaker">A:</span> No, he is single.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ TAB 2: TRANSLATION ============ -->
+        <div class="tab-content" id="tab-translation">
+            <div class="section-title"><i class="fas fa-language"></i> الترجمة</div>
+
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> عن السؤال</h3>
+                <p><strong>علمي:</strong> ترجمة جملتين من الإنجليزية للعربية (2×2) وجملة من العربية للإنجليزية (2).<br>
+                    <strong>أدبي:</strong> ترجمة جملة من الإنجليزية للعربية (3) وجملة من العربية للإنجليزية (3).</p>
+                <p><strong>المجموع:</strong> 6 درجات لكلا القسمين.</p>
+            </div>
+
+            <!-- جدول المفردات -->
+            <div class="card">
+                <h3><i class="fas fa-list-ul"></i> أهم المفردات</h3>
+                <div class="table-wrap">
+                    <table class="word-table">
+                        <thead><tr><th>الكلمة</th><th>المعنى</th><th>الكلمة</th><th>المعنى</th></tr></thead>
+                        <tbody>
+                            <tr><td>patience</td><td>الصبر</td><td>perseverance</td><td>المثابرة</td></tr>
+                            <tr><td>issue</td><td>قضية</td><td>preserve</td><td>يحافظ على</td></tr>
+                            <tr><td>foreign language</td><td>لغة أجنبية</td><td>climate change</td><td>التغير المناخي</td></tr>
+                            <tr><td>cultural heritage</td><td>التراث الثقافي</td><td>do one's best</td><td>يبذل قصارى جهده</td></tr>
+                            <tr><td>unemployment</td><td>البطالة</td><td>time bomb</td><td>قنبلة موقوتة</td></tr>
+                            <tr><td>threaten</td><td>يهدد</td><td>security</td><td>الأمن</td></tr>
+                            <tr><td>stability</td><td>الاستقرار</td><td>society</td><td>المجتمع</td></tr>
+                            <tr><td>deeds</td><td>الأعمال</td><td>produce</td><td>يُنتج</td></tr>
+                            <tr><td>meteorologists</td><td>خبراء الأرصاد</td><td>warn against</td><td>يحذر من</td></tr>
+                            <tr><td>inherit</td><td>يرث</td><td>fortune</td><td>ثروة</td></tr>
+                            <tr><td>deceased</td><td>متوفى / راحل</td><td>travel</td><td>السفر</td></tr>
+                            <tr><td>achievement</td><td>إنجاز</td><td>contribute to</td><td>يساهم في</td></tr>
+                            <tr><td>civilians</td><td>المدنيون</td><td>against</td><td>ضد</td></tr>
+                            <tr><td>dominant</td><td>مهيمن</td><td>meeting</td><td>اجتماع</td></tr>
+                            <tr><td>fresh water</td><td>مياه عذبة</td><td>annual</td><td>سنوي</td></tr>
+                            <tr><td>reduce</td><td>يقلل</td><td>consumption</td><td>الاستهلاك</td></tr>
+                            <tr><td>energy</td><td>الطاقة</td><td>conserve</td><td>يحافظ على</td></tr>
+                            <tr><td>company</td><td>شركة</td><td>attack</td><td>هجوم</td></tr>
+                            <tr><td>overcome</td><td>يتغلب على</td><td>youth</td><td>الشباب</td></tr>
+                            <tr><td>enter</td><td>يدخل / يلتحق بـ</td><td>penetrate</td><td>يخترق / ينفذ إلى</td></tr>
+                            <tr><td>desalination plants</td><td>محطات تحلية المياه</td><td>be responsible for</td><td>يكون مسؤولاً عن</td></tr>
+                            <tr><td>confront</td><td>يواجه</td><td>challenge</td><td>تحدٍّ</td></tr>
+                            <tr><td>face</td><td>يواجه</td><td>encourage</td><td>يشجع</td></tr>
+                            <tr><td>labour market</td><td>سوق العمل</td><td>starvation</td><td>المجاعة</td></tr>
+                            <tr><td>disease</td><td>مرض</td><td>modern technology</td><td>التكنولوجيا الحديثة</td></tr>
+                            <tr><td>fall (in)</td><td>انخفاض في</td><td>disadvantages</td><td>عيوب</td></tr>
+                            <tr><td>be astonished</td><td>يندهش</td><td>advantages</td><td>مميزات</td></tr>
+                            <tr><td>procedures</td><td>إجراءات</td><td>candidate</td><td>متقدم / مرشح</td></tr>
+                            <tr><td>be built on</td><td>يقوم على</td><td>facts</td><td>حقائق</td></tr>
+                            <tr><td>humanity</td><td>البشرية</td><td>disastrous</td><td>كارثي</td></tr>
+                            <tr><td>hunger</td><td>الجوع</td><td>efficient</td><td>كفء / فعّال</td></tr>
+                            <tr><td>thirst</td><td>العطش</td><td>appropriate</td><td>مناسب</td></tr>
+                            <tr><td>effective</td><td>فعّال</td><td>aspects</td><td>جوانب</td></tr>
+                            <tr><td>role</td><td>دور</td><td>appreciate</td><td>يقدر</td></tr>
+                            <tr><td>population</td><td>السكان</td><td>poverty</td><td>الفقر</td></tr>
+                            <tr><td>ensure</td><td>يحرص على</td><td>participation</td><td>مشاركة</td></tr>
+                            <tr><td>rise in</td><td>ارتفاع في</td><td>global</td><td>عالمى</td></tr>
+                            <tr><td>prove</td><td>يثبت</td><td>balance</td><td>التوازن</td></tr>
+                            <tr><td>proof</td><td>إثبات</td><td>expert</td><td>خبير</td></tr>
+                            <tr><td>avoid</td><td>يتجنب</td><td>theories</td><td>نظريات</td></tr>
+                            <tr><td>integrate</td><td>يدمج</td><td>decrease</td><td>يقلل</td></tr>
+                            <tr><td>support</td><td>دعم / يؤيد</td><td>organization</td><td>منظمة</td></tr>
+                            <tr><td>national projects</td><td>مشروعات قومية</td><td>job opportunities</td><td>فرص عمل</td></tr>
+                            <tr><td>emission of gases</td><td>انبعاث الغازات</td><td>global warming</td><td>الاحتباس الحراري</td></tr>
+                            <tr><td>carry out</td><td>ينفذ</td><td>Upper Egypt</td><td>صعيد مصر</td></tr>
+                            <tr><td>comprehensive</td><td>شامل</td><td>cover</td><td>يشمل / يغطي</td></tr>
+                            <tr><td>increase</td><td>زيادة / يزيد</td><td>petrol</td><td>البنزين</td></tr>
+                            <tr><td>conflict</td><td>صراع</td><td>lead to</td><td>يؤدي إلى</td></tr>
+                            <tr><td>crisis</td><td>أزمة</td><td>shortage</td><td>نقص</td></tr>
+                            <tr><td>play a major role</td><td>يلعب دوراً رئيسياً</td><td>traffic regulations</td><td>قواعد المرور</td></tr>
+                            <tr><td>medicine</td><td>الطب</td><td>institutions</td><td>مؤسسات</td></tr>
+                            <tr><td>misleading</td><td>مضلل</td><td>apologise</td><td>يعتذر</td></tr>
+                            <tr><td>provide</td><td>يوفر</td><td>success</td><td>النجاح</td></tr>
+                            <tr><td>accidents</td><td>حوادث</td><td>result from</td><td>تنتج عن</td></tr>
+                            <tr><td>investments</td><td>استثمارات</td><td>hard work</td><td>العمل الجاد</td></tr>
+                            <tr><td>confirm</td><td>يؤكد</td><td>war</td><td>حرب</td></tr>
+                            <tr><td>benefits</td><td>فوائد</td><td>technology</td><td>التكنولوجيا</td></tr>
+                            <tr><td>communication</td><td>التواصل</td><td>instant</td><td>فوري</td></tr>
+                            <tr><td>information</td><td>المعلومات</td><td>automate</td><td>يؤتمت</td></tr>
+                            <tr><td>patient care</td><td>رعاية المرضى</td><td>moral support</td><td>الدعم المعنوي</td></tr>
+                            <tr><td>take action against</td><td>يتخذ إجراءات ضد</td><td>coral reefs</td><td>الشعاب المرجانية</td></tr>
+                            <tr><td>adopt</td><td>يتبنى</td><td>protect</td><td>يحمي</td></tr>
+                            <tr><td>nurse</td><td>ممرض / ممرضة</td><td>play a vital role</td><td>يلعب دوراً حيوياً</td></tr>
+                            <tr><td>sustainable</td><td>مستدام</td><td>activities</td><td>أنشطة</td></tr>
+                            <tr><td>crucial</td><td>بالغ الأهمية</td><td>evolve</td><td>يتطور</td></tr>
+                            <tr><td>medication</td><td>الأدوية</td><td>doctors</td><td>الأطباء</td></tr>
+                            <tr><td>monitor</td><td>يراقب</td><td>environment</td><td>البيئة</td></tr>
+                            <tr><td>cooperate with</td><td>يتعاون مع</td><td>diverse</td><td>متنوع</td></tr>
+                            <tr><td>vibrant</td><td>نابض بالحياة</td><td>administer</td><td>يُعطي</td></tr>
+                            <tr><td>dignity</td><td>الكرامة</td><td>adapt to</td><td>يتكيف مع</td></tr>
+                            <tr><td>entertainment</td><td>الترفيه</td><td>de-stress</td><td>يخفف التوتر</td></tr>
+                            <tr><td>a wide range of</td><td>مجموعة واسعة من</td><td>regardless of</td><td>بغض النظر عن</td></tr>
+                            <tr><td>ancient</td><td>قديم</td><td>contributor</td><td>مساهم</td></tr>
+                            <tr><td>flexibility</td><td>المرونة</td><td>foster</td><td>يعزز</td></tr>
+                            <tr><td>creativity</td><td>الإبداع</td><td>mindset</td><td>عقلية</td></tr>
+                            <tr><td>digital literacy</td><td>الإلمام الرقمي</td><td>tools</td><td>الأدوات</td></tr>
+                            <tr><td>vitamins</td><td>الفيتامينات</td><td>skills</td><td>المهارات</td></tr>
+                            <tr><td>marine species</td><td>أنواع بحرية</td><td>festivals</td><td>مهرجانات / احتفالات</td></tr>
+                            <tr><td>absence</td><td>غياب</td><td>cause</td><td>يسبب</td></tr>
+                            <tr><td>historical</td><td>تاريخي</td><td>the elderly</td><td>كبار السن</td></tr>
+                            <tr><td>digital</td><td>الرقمية</td><td>enormous</td><td>هائل</td></tr>
+                            <tr><td>celebrate</td><td>يحتفل بـ</td><td>various</td><td>متنوعة</td></tr>
+                            <tr><td>traditional</td><td>تقليدي</td><td>hospitality</td><td>الضيافة</td></tr>
+                            <tr><td>borders</td><td>الحدود</td><td>cultural</td><td>ثقافي</td></tr>
+                            <tr><td>reflect</td><td>يعكس</td><td>nations</td><td>الأمم</td></tr>
+                            <tr><td>compassion</td><td>التعاطف</td><td>bind</td><td>يوحّد / يربط</td></tr>
+                            <tr><td>differences</td><td>الاختلافات</td><td>divide</td><td>يفرِّق</td></tr>
+                            <tr><td>novels</td><td>الروايات</td><td>poems</td><td>القصائد</td></tr>
+                            <tr><td>plays</td><td>المسرحيات</td><td>literature</td><td>الأدب</td></tr>
+                            <tr><td>reveal</td><td>يكشف</td><td>language</td><td>اللغة</td></tr>
+                            <tr><td>understand</td><td>يفهم</td><td>welcome</td><td>يرحب بـ</td></tr>
+                            <tr><td>development</td><td>التطور</td><td>inaugurate</td><td>يفتتح</td></tr>
+                            <tr><td>decade</td><td>عقد</td><td>civilization</td><td>حضارة</td></tr>
+                            <tr><td>century</td><td>قرن</td><td>temperatures</td><td>درجات الحرارة</td></tr>
+                            <tr><td>Worship</td><td>العبادة</td><td>transactions</td><td>المعاملات</td></tr>
+                            <tr><td>serious</td><td>خطير</td><td>influence</td><td>تأثير</td></tr>
+                            <tr><td>Middle East</td><td>الشرق الأوسط</td><td>clear</td><td>واضح</td></tr>
+                            <tr><td>epidemics</td><td>الأوبئة</td><td>useful</td><td>مفيد</td></tr>
+                            <tr><td>essential</td><td>أساسي / ضروري</td><td>deliberately</td><td>عمداً / عن قصد</td></tr>
+                            <tr><td>extremely</td><td>للغاية</td><td>efficiency</td><td>الكفاءة</td></tr>
+                            <tr><td>spread</td><td>ينشر</td><td>priorities</td><td>الأولويات</td></tr>
+                            <tr><td>minority</td><td>أقلية</td><td>afford</td><td>يتحمل تكلفة</td></tr>
+                            <tr><td>private education</td><td>تعليم خاص</td><td>time management</td><td>إدارة الوقت</td></tr>
+                            <tr><td>article</td><td>مقال</td><td>human effort</td><td>الجهد البشري</td></tr>
+                            <tr><td>accuracy</td><td>الدقة</td><td>error</td><td>خطأ</td></tr>
+                            <tr><td>machine</td><td>آلة</td><td>pollution</td><td>التلوث</td></tr>
+                            <tr><td>complex</td><td>معقد</td><td>significantly</td><td>بشكل كبير</td></tr>
+                            <tr><td>enhance</td><td>يعزز</td><td>productivity</td><td>الإنتاجية</td></tr>
+                            <tr><td>ethics</td><td>الأخلاق</td><td>law</td><td>قانون</td></tr>
+                            <tr><td>a variety of</td><td>مجموعة متنوعة من</td><td>industrial processes</td><td>العمليات الصناعية</td></tr>
+                            <tr><td>credible</td><td>موثوق / ذو مصداقية</td><td>the disabled</td><td>ذوو الاحتياجات الخاصة</td></tr>
+                            <tr><td>employable</td><td>صالح للعمل / قابل للتوظيف</td><td>breathtaking</td><td>مدهش / يخطف الأنفاس</td></tr>
+                            <tr><td>upset + شئ</td><td>يخلّ / يفسد (يخلّ بالتوازن)</td><td>conserve natural resources</td><td>يحافظ على الموارد الطبيعية</td></tr>
+                            <tr><td>take into consideration</td><td>يأخذ في الاعتبار</td><td>streamline</td><td>يُبسِّط / يجعل أكثر كفاءة</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- نماذج الترجمة من إنجليزي لعربي -->
+            <div class="card">
+                <h3><i class="fas fa-exchange-alt"></i> ترجمة من الإنجليزية للعربية</h3>
+                <div class="translation-block"><span class="en">1. Egypt supports peace and stability in the Middle East.</span> <span class="arrow">→</span> <span class="ar">تدعم مصر السلام والاستقرار في الشرق الأوسط.</span></div>
+                <div class="translation-block"><span class="en">2. We must invest our time and energy in the development of our country.</span> <span class="arrow">→</span> <span class="ar">يجب أن نستثمر وقتنا وطاقتنا في تنمية بلدنا.</span></div>
+                <div class="translation-block"><span class="en">3. Egypt inaugurated the Grand Egyptian Museum. It reflects the greatness of ancient Egyptian civilization.</span> <span class="arrow">→</span> <span class="ar">افتتحت مصر المتحف المصري الكبير. إنه يعكس عظمة الحضارة المصرية القديمة.</span></div>
+                <div class="translation-block"><span class="en">4. The rise in global temperatures has become the dominant contributor to sea level rise over the past decade.</span> <span class="arrow">→</span> <span class="ar">أصبح ارتفاع درجات الحرارة العالمية هو المساهم الرئيسي في ارتفاع مستوى سطح البحر خلال العقد الماضي.</span></div>
+                <div class="translation-block"><span class="en">5. Experts avoid making unproven theories, as science is built on facts.</span> <span class="arrow">→</span> <span class="ar">يتجنب الخبراء طرح نظريات غير مثبتة، لأن العلم يقوم على الحقائق.</span></div>
+                <div class="translation-block"><span class="en">6. Islam is comprehensive as it covers all parts of a person's life: Worship, ethics, and transactions.</span> <span class="arrow">→</span> <span class="ar">الإسلام شامل لأنه يغطي جميع جوانب حياة الإنسان: العبادة والأخلاق والمعاملات.</span></div>
+                <div class="translation-block"><span class="en">7. You need patience and perseverance to learn a foreign language.</span> <span class="arrow">→</span> <span class="ar">أنت بحاجة إلى الصبر والمثابرة لتعلم لغة أجنبية.</span></div>
+                <div class="translation-block"><span class="en">8. We should do our best to preserve our cultural heritage.</span> <span class="arrow">→</span> <span class="ar">يجب أن نبذل قصارى جهدنا للحفاظ على تراثنا الثقافي.</span></div>
+                <div class="translation-block"><span class="en">9. Islam holds that each person is responsible for his or her deeds in this life.</span> <span class="arrow">→</span> <span class="ar">يرى الإسلام أن كل شخص مسؤول عن أعماله في هذه الحياة.</span></div>
+                <div class="translation-block"><span class="en">10. She inherited a fortune from her deceased husband.</span> <span class="arrow">→</span> <span class="ar">ورثت ثروة من زوجها المتوفى.</span></div>
+                <div class="translation-block"><span class="en">11. The issue of climate change was the dominant of the meeting.</span> <span class="arrow">→</span> <span class="ar">كانت قضية التغير المناخي هي المهيمنة على الاجتماع.</span></div>
+                <div class="translation-block"><span class="en">12. Desalination plants have been built to produce fresh water from the sea.</span> <span class="arrow">→</span> <span class="ar">تم إنشاء محطات تحلية المياه لإنتاج مياه عذبة من البحر.</span></div>
+                <div class="translation-block"><span class="en">13. One of the greatest achievements that Abu Bakr (APWH) contributed to Islam was the compilations of the Nobel Quran.</span> <span class="arrow">→</span> <span class="ar">من أعظم الإنجازات التي ساهم بها أبو بكر (رضي الله عنه) للإسلام هي جمع القرآن الكريم.</span></div>
+                <div class="translation-block"><span class="en">14. You should overcome the challenges you may face / confront.</span> <span class="arrow">→</span> <span class="ar">يجب أن تتغلب على التحديات التي قد تواجهها.</span></div>
+                <div class="translation-block"><span class="en">15. Millions are threatened by starvation and diseases each day.</span> <span class="arrow">→</span> <span class="ar">الملايين مهددون بالمجاعة والأمراض كل يوم.</span></div>
+                <div class="translation-block"><span class="en">16. There's been a fall in the number of young people entering the labour market.</span> <span class="arrow">→</span> <span class="ar">كان هناك انخفاض في عدد الشباب الذين يدخلون سوق العمل.</span></div>
+                <div class="translation-block"><span class="en">17. The rays of the light of Islam penetrated Omar's heart when he read some verses of the Holy Quran.</span> <span class="arrow">→</span> <span class="ar">اخترقت أشعة نور الإسلام قلب عمر عندما قرأ بعض آيات القرآن الكريم.</span></div>
+                <div class="translation-block"><span class="en">18. The attack on civilians is against the world's law.</span> <span class="arrow">→</span> <span class="ar">الهجوم على المدنيين هو ضد القانون العالمي.</span></div>
+                <div class="translation-block"><span class="en">19. You have to be efficient in using modern technology to get a good job.</span> <span class="arrow">→</span> <span class="ar">يجب أن تكون كفءً في استخدام التكنولوجيا الحديثة للحصول على وظيفة جيدة.</span></div>
+                <div class="translation-block"><span class="en">20. Companies use a variety of testing procedures to select appropriate candidates.</span> <span class="arrow">→</span> <span class="ar">تستخدم الشركات مجموعة متنوعة من إجراءات الاختبار لاختيار المرشحين المناسبين.</span></div>
+                <div class="translation-block"><span class="en">21. He has been supporting himself since his father's death.</span> <span class="arrow">→</span> <span class="ar">إنه يعيل نفسه منذ وفاة والده.</span></div>
+                <div class="translation-block"><span class="en">22. Half of the world's population is living in poverty.</span> <span class="arrow">→</span> <span class="ar">نصف سكان العالم يعيشون في فقر.</span></div>
+            </div>
+
+            <!-- نماذج الترجمة من عربي لإنجليزي -->
+            <div class="card">
+                <h3><i class="fas fa-exchange-alt"></i> ترجمة من العربية للإنجليزية</h3>
+                <div class="translation-block"><span class="ar">1. أصبح نقص المياه أحد أخطر التحديات البيئية التى تواجه العديد من دول العالم.</span> <span class="arrow">→</span> <span class="en">Water scarcity has become one of the most serious environmental challenges facing many countries of the world.</span></div>
+                <div class="translation-block"><span class="ar">2. حماية البيئة مسؤولية الجميع. الهواء النظيف مهم للصحة.</span> <span class="arrow">→</span> <span class="en">Protecting the environment is everyone's responsibility. Clean air is important for health.</span></div>
+                <div class="translation-block"><span class="ar">3. قد يؤدي الصراع بين إيران والولايات المتحدة الأمريكية إلى أزمة ونقص الطاقة عالمياً وزيادة أسعار البنزين حول العالم.</span> <span class="arrow">→</span> <span class="en">The conflict between Iran and the USA may lead to a global energy crisis, shortage, and an increase in petrol prices around the world.</span></div>
+                <div class="translation-block"><span class="ar">4. الوسطية تعني التوازن والبعد عن التطرف في الدين وفي شتى مجالات الحياة.</span> <span class="arrow">→</span> <span class="en">Moderateness means balance and avoiding extremism in religion and in all areas of life.</span></div>
+                <div class="translation-block"><span class="ar">5. البطالة قنبلة موقوتة تهدد أمن واستقرار المجتمع.</span> <span class="arrow">→</span> <span class="en">Unemployment is a time bomb that threatens the security and stability of society.</span></div>
+                <div class="translation-block"><span class="ar">6. يحذر خبراء الأرصاد من السفر في هذه الحالات.</span> <span class="arrow">→</span> <span class="en">Meteorologists warn against travelling in these conditions.</span></div>
+                <div class="translation-block"><span class="ar">7. تقليل الاستهلاك السنوي من الطاقة خطوة مهمة للحفاظ عليها.</span> <span class="arrow">→</span> <span class="en">Reducing the annual consumption of energy is an important step to conserve it.</span></div>
+                <div class="translation-block"><span class="ar">8. علينا تشجيع الشباب للعمل الاجتماعي لخدمة بلدهم.</span> <span class="arrow">→</span> <span class="en">We should encourage youth to do social work to serve their country.</span></div>
+                <div class="translation-block"><span class="ar">9. يجب أن نأخذ في الاعتبار أن الأسمدة الزراعية والمبيدات الكيميائية لها ميزات وعيوب.</span> <span class="arrow">→</span> <span class="en">We should take into consideration that agricultural fertilizers and chemical pesticides have advantages and disadvantages.</span></div>
+                <div class="translation-block"><span class="ar">10. اندهش عمر بن الخطاب عندما سمع أن أخته وزوجها اعتنقا الإسلام.</span> <span class="arrow">→</span> <span class="en">Omar ibn al-Khattab was astonished when he heard that his sister and her husband had embraced Islam.</span></div>
+                <div class="translation-block"><span class="ar">11. قد يموت آلاف الناس من البرد والجوع هذا الشتاء.</span> <span class="arrow">→</span> <span class="en">Thousands of people may die of cold and hunger this winter.</span></div>
+                <div class="translation-block"><span class="ar">12. يحرص الإسلام على مشاركة المرأة في كل جوانب الحياة، ويقدر دورها الفعال في المجتمع الإسلامي.</span> <span class="arrow">→</span> <span class="en">Islam ensures women's participation in all aspects of life and appreciates their effective role in Islamic society.</span></div>
+                <div class="translation-block"><span class="ar">13. تم تكريم أحمد زويل لإنجازاته في الكيمياء.</span> <span class="arrow">→</span> <span class="en">Ahmed Zewail was honoured for his achievements in chemistry.</span></div>
+                <div class="translation-block"><span class="ar">14. يدعو الإسلام للعدالة والمساواة.</span> <span class="arrow">→</span> <span class="en">Islam calls for justice and equality.</span></div>
+                <div class="translation-block"><span class="ar">15. تدرك مصر التحديات التي تواجه العالم الإسلامي.</span> <span class="arrow">→</span> <span class="en">Egypt realises the challenges facing the Islamic world.</span></div>
+                <div class="translation-block"><span class="ar">16. العمل الجاد يؤدي للنجاح.</span> <span class="arrow">→</span> <span class="en">Hard work leads to success.</span></div>
+            </div>
+        </div>
+
+        <!-- ============ TAB 3: READING ============ -->
+        <div class="tab-content" id="tab-reading">
+            <div class="section-title"><i class="fas fa-book-reader"></i> قطعة الفهم</div>
+
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> عن السؤال</h3>
+                <p><strong>علمي:</strong> 4 أسئلة مقالية + 4 اختيار من متعدد.<br>
+                    <strong>أدبي:</strong> 5 أسئلة مقالية + 5 اختيار من متعدد.<br>
+                    <strong>الدرجة:</strong> علمي 8، أدبي 10.</p>
+                <p><strong>الخطوات:</strong> اقرأ السؤال أولاً، ثم القطعة بتركيز، حدد الكلمات المفتاحية، ثم أجب من القطعة نفسها.</p>
+            </div>
+
+            <!-- قطعة 1 -->
+            <div class="card">
+                <h3><i class="fas fa-scroll"></i> 1. أدبي تجريبي 2026 <span class="badge">التاريخ</span></h3>
+                <div class="passage">
+                    <p>التاريخ هو دراسة الأحداث الماضية والأشخاص والحضارات. يساعدنا على فهم كيفية تطور المجتمعات وتشكل العالم الحديث. بدراسة التاريخ، يمكن للناس التعلم من نجاحات وإخفاقات الأجيال السابقة. هذه الدروس يمكن أن ترشدنا لاتخاذ قرارات أفضل للمستقبل.</p>
+                    <p>يقضي العديد من المؤرخين سنوات في البحث في الوثائق التاريخية والرسائل والتحف القديمة. يحاولون فهم كيف عاش الناس، وما آمنوا به، وكيف حلوا مشاكلهم. على سبيل المثال، يدرس المؤرخون الحضارات القديمة مثل مصر واليونان وروما لمعرفة حكوماتهم وثقافاتهم وإنجازاتهم العلمية.</p>
+                    <p>يساعدنا التاريخ أيضاً على فهم أسباب الأحداث الكبرى مثل الحروب والثورات والتغيرات الاجتماعية. عندما يعرف الناس الأسباب وراء هذه الأحداث، قد يكونون قادرين على منع حدوث مشاكل مماثلة في المستقبل. بالإضافة إلى ذلك، تشجع دراسة التاريخ التفكير النقدي لأن الطلاب يجب أن يحللوا مصادر وآراء مختلفة قبل تكوين استنتاجات.</p>
+                    <p>علاوة على ذلك، يرتبط التاريخ ارتباطاً وثيقاً بالأدب. استُلهم العديد من الكتاب المشهورين من الأحداث التاريخية والشخصيات الحقيقية. غالباً ما تعكس الروايات والسير الذاتية والقصائد التاريخية ثقافة وقيم عصرها. من خلال الأدب، يمكن للقراء تجربة مشاعر ونضالات وآمال الناس الذين عاشوا في الماضي.</p>
+                    <p>في الختام، التاريخ ليس فقط حفظ التواريخ والأحداث. إنه طريقة لفهم التجارب الإنسانية وتعلم دروس مهمة عن المجتمع والثقافة والسلوك البشري.</p>
+                </div>
+                <p><strong>أجب عن الأسئلة التالية:</strong></p>
+                <ol class="question-list">
+                    <li><strong>ما هو التاريخ؟</strong> <br> <span class="text-muted">هو دراسة الأحداث الماضية والأشخاص والحضارات.</span></li>
+                    <li><strong>لماذا دراسة التاريخ مهمة للناس اليوم؟</strong> <br> <span class="text-muted">تساعدنا على فهم تطور المجتمعات، والتعلم من النجاحات والإخفاقات، وترشدنا لاتخاذ قرارات أفضل.</span></li>
+                    <li><strong>من يدرس الوثائق التاريخية والتحف؟</strong> <br> <span class="text-muted">المؤرخون.</span></li>
+                    <li><strong>كيف تشجع دراسة التاريخ التفكير النقدي؟</strong> <br> <span class="text-muted">يجب على الطلاب تحليل مصادر وآراء مختلفة قبل تكوين استنتاجات.</span></li>
+                    <li><strong>ما العلاقة بين التاريخ والأدب؟</strong> <br> <span class="text-muted">يستلهم العديد من الكتاب من الأحداث التاريخية، ويعكس الأدب ثقافة وقيم عصره.</span></li>
+                </ol>
+                <p><strong>اختر الإجابة الصحيحة:</strong></p>
+                <ul style="list-style:none; padding-right:0;">
+                    <li class="mcq-option"><strong>6.</strong> يدرس التاريخ بشكل أساسي: <br> a) الخطط المستقبلية &nbsp; <strong>b) الأحداث الماضية والحضارات</strong> &nbsp; c) التكنولوجيا الحديثة فقط &nbsp; d) علوم الفضاء</li>
+                    <li class="mcq-option"><strong>7.</strong> غالباً ما يبحث المؤرخون في: <br> <strong>a) الوثائق التاريخية والتحف</strong> &nbsp; b) الصحف فقط &nbsp; c) الآلات الحديثة &nbsp; d) الأحداث الرياضية</li>
+                    <li class="mcq-option"><strong>8.</strong> الحضارات القديمة المذكورة في النص تشمل: <br> a) الصين واليابان &nbsp; <strong>b) مصر واليونان وروما</strong> &nbsp; c) أمريكا وكندا &nbsp; d) الهند والبرازيل</li>
+                    <li class="mcq-option"><strong>9.</strong> التاريخ يشجع الطلاب على: <br> a) تجاهل المعلومات &nbsp; <strong>b) التفكير النقدي وتحليل المصادر</strong> &nbsp; c) تجنب الدراسة &nbsp; d) الحفظ دون فهم</li>
+                    <li class="mcq-option"><strong>10.</strong> يستلهم العديد من الكتاب من: <br> <strong>a) الأحداث التاريخية</strong> &nbsp; b) العلوم فقط &nbsp; c) المسابقات الرياضية &nbsp; d) الإعلانات</li>
+                </ul>
+            </div>
+
+            <!-- قطعة 2 -->
+            <div class="card">
+                <h3><i class="fas fa-flask"></i> 2. علمي تجريبي 2026 <span class="badge">البحث العلمي</span></h3>
+                <div class="passage">
+                    <p>البحث العلمي هو طريقة منهجية لدراسة العالم لاكتشاف معرفة جديدة. يستخدم العلماء البحث لفهم الظواهر الطبيعية وحل المشكلات. تبدأ العملية عادةً بسؤال أو مشكلة تحتاج إلى تحقيق.</p>
+                    <p>بعد ذلك، يشكل العالم فرضية، وهي تفسير محتمل يمكن اختباره. بعد ذلك، تُجرى تجارب أو ملاحظات لجمع البيانات. ثم تُحلل البيانات بعناية لمعرفة ما إذا كانت الفرضية صحيحة أم لا.</p>
+                    <p>خطوة أخرى مهمة في البحث العلمي هي مراجعة النتائج. يناقش العلماء النتائج التي توصلوا إليها مع خبراء آخرين يقومون بفحص البحث بعناية. تسمى هذه العملية مراجعة الأقران. تساعد في التأكد من أن البحث دقيق وموثوق قبل نشره. كما تساعد مراجعة الأقران العلماء على تحسين عملهم وتصحيح أي أخطاء.</p>
+                    <p>أخيراً، يشارك العلماء نتائجهم مع الآخرين من خلال التقارير أو المقالات أو العروض التقديمية. البحث العلمي مهم لأنه يساعد في تحسين التكنولوجيا والطب وفهمنا للكون.</p>
+                </div>
+                <p><strong>أجب:</strong></p>
+                <ol class="question-list">
+                    <li><strong>ما هو البحث العلمي؟</strong> <br> <span class="text-muted">طريقة منهجية لدراسة العالم لاكتشاف معرفة جديدة.</span></li>
+                    <li><strong>لماذا يجري العلماء البحث؟</strong> <br> <span class="text-muted">لفهم الظواهر الطبيعية وحل المشكلات.</span></li>
+                    <li><strong>كيف يختبر العلماء فرضياتهم؟</strong> <br> <span class="text-muted">بإجراء تجارب أو ملاحظات لجمع البيانات وتحليلها.</span></li>
+                    <li><strong>لماذا تعتبر مراجعة الأقران مهمة قبل النشر؟</strong> <br> <span class="text-muted">للتأكد من دقة وموثوقية البحث.</span></li>
+                </ol>
+                <p><strong>اختيار من متعدد:</strong></p>
+                <ul style="list-style:none; padding-right:0;">
+                    <li class="mcq-option"><strong>5.</strong> يساعد البحث العلمي الناس على <strong>b) اكتشاف معرفة جديدة</strong></li>
+                    <li class="mcq-option"><strong>6.</strong> الخطوة الأولى في البحث عادةً هي <strong>b) طرح سؤال</strong></li>
+                    <li class="mcq-option"><strong>7.</strong> يجمع العلماء <strong>b) البيانات</strong> أثناء التجارب.</li>
+                    <li class="mcq-option"><strong>8.</strong> البحث العلمي مهم لأنه يحسن <strong>d) كلاً من a و c</strong> (التكنولوجيا والطب / فهمنا للكون)</li>
+                </ul>
+            </div>
+
+            <!-- قطعة 3 -->
+            <div class="card">
+                <h3><i class="fas fa-user-edit"></i> 3. أدبي دور أول 2026 <span class="badge">نجيب محفوظ</span></h3>
+                <div class="passage">
+                    <p>نجيب محفوظ كاتب مصري مشهور. ولد في القاهرة عام 1911. درس الفلسفة في جامعة القاهرة. في عام 1952 بدأ كتابة الروايات. يُعتبر أحد أكثر الكتاب تأثيراً في الأدب العربي الحديث. كرّس حياته لكتابة الروايات والقصص القصيرة التي تعكس المجتمع المصري والثقافة والتحديات السياسية. غالباً ما أظهرت أعماله المشاكل الاجتماعية والعلاقات الأسرية ونضالات الناس العاديين. كانت كتابته واضحة وواقعية، واستمتع الكثير من الناس بقراءة كتبه. كتب أكثر من 30 رواية، بما في ذلك الثلاثية (بين القصرين، قصر الشوق، السكرية) التي تُعتبر أحد أعظم إنجازاته. وصفت الحياة في القاهرة عبر أجيال مختلفة. في عام 1988، حصل على جائزة نوبل في الأدب، ليصبح أول مؤلف عربي يحصل على هذه الجائزة. يُذكر نجيب محفوظ كأحد أعظم الكتاب في الأدب العربي لأن كتابته أثرت في العديد من القراء والكتّاب حول العالم. توفي عام 2006، لكن كتبه لا تزال تُقرأ في جميع أنحاء العالم.</p>
+                </div>
+                <p><strong>أجب:</strong></p>
+                <ol class="question-list">
+                    <li><strong>ماذا درس نجيب محفوظ في جامعة القاهرة؟</strong> <br> <span class="text-muted">الفلسفة.</span></li>
+                    <li><strong>ما كان أعظم إنجازاته؟</strong> <br> <span class="text-muted">كتابة الثلاثية والفوز بجائزة نوبل في الأدب.</span></li>
+                    <li><strong>ماذا وصفت كتاباته؟</strong> <br> <span class="text-muted">المجتمع المصري والثقافة والتحديات السياسية والمشاكل الاجتماعية والعلاقات الأسرية ونضالات الناس العاديين.</span></li>
+                    <li><strong>كم كان عمره عندما توفي؟</strong> <br> <span class="text-muted">95 (ولد 1911، توفي 2006).</span></li>
+                    <li><strong>كم عدد الروايات التي كتبها؟</strong> <br> <span class="text-muted">أكثر من 30.</span></li>
+                </ol>
+                <p><strong>اختيار من متعدد:</strong></p>
+                <ul style="list-style:none; padding-right:0;">
+                    <li class="mcq-option"><strong>6.</strong> بدأ كتابة الروايات في <strong>b) 1952</strong></li>
+                    <li class="mcq-option"><strong>7.</strong> حصل على جائزة نوبل في <strong>c) الأدب</strong></li>
+                    <li class="mcq-option"><strong>8.</strong> كان كاتباً مشهوراً <strong>a) مؤلفاً</strong></li>
+                    <li class="mcq-option"><strong>9.</strong> كان نجيب محفوظ كاتباً <strong>a) مؤثراً</strong></li>
+                    <li class="mcq-option"><strong>10.</strong> كتب نجيب محفوظ بشكل أساسي عن <strong>a) الحياة في مصر</strong></li>
+                </ul>
+            </div>
+
+            <!-- قطعة 4 -->
+            <div class="card">
+                <h3><i class="fas fa-exclamation-triangle"></i> 4. علمي دور أول 2026 <span class="badge">الكوارث البشرية</span></h3>
+                <div class="passage">
+                    <p>الكوارث البشرية هي أحداث خطيرة تسببها الأنشطة البشرية بشكل مباشر أو غير مباشر. تختلف عن الكوارث الطبيعية مثل الزلازل والفيضانات أو البراكين. تحدث الكوارث الطبيعية نتيجة قوى طبيعية، بينما تحدث الكوارث البشرية بسبب أفعال الإنسان. على عكس الكوارث الطبيعية، يمكن منع الكوارث البشرية من خلال الإدارة الدقيقة وتدابير السلامة الصارمة.</p>
+                    <p>الحروب، تسرب النفط، الحرائق، التلوث، والحوادث الصناعية أمثلة على الكوارث البشرية. تطلق المصانع مواد كيميائية ضارة في الأنهار أو الهواء. يمكن للتسربات الكيميائية، وانفجارات المصانع، وتسرب النفط أن تدمر النظم البيئية، وتلوث مصادر المياه، وتسبب أمراضاً للناس. كما تسبب حوادث النقل أضراراً جسيمة.</p>
+                    <p>عادة ما تحدث حوادث الطائرات، واصطدامات القطارات، وحوادث الطرق بسبب الخطأ البشري، أو الفشل التقني، أو تجاهل لوائح السلامة. تُعتبر الحروب أيضاً نوعاً رئيسياً آخر من الكوارث البشرية لأنها تؤدي إلى فقدان الأرواح، وتدمير المباني، والانهيار الاقتصادي، وتشريد الملايين من الناس. علاوة على ذلك، تترك الحروب أيضاً آثاراً نفسية طويلة الأجل على الأطفال والعائلات. يمكن أن تسبب الحرائق الناتجة عن مشاكل كهربائية أو إهمال بشري خسائر فادحة.</p>
+                    <p>للحد من الكوارث البشرية، يجب على الحكومات فرض قوانين صارمة لمنع الحوادث ومعاقبة السلوك المتهور. يجب على الناس اتباع تعليمات السلامة.</p>
+                </div>
+                <p><strong>أجب:</strong></p>
+                <ol class="question-list">
+                    <li><strong>اذكر مثالين للكوارث البشرية.</strong> <br> <span class="text-muted">الحروب، تسرب النفط، الحرائق، التلوث، الحوادث الصناعية (أي اثنين).</span></li>
+                    <li><strong>كيف يمكننا الحد من الكوارث البشرية؟</strong> <br> <span class="text-muted">بفرض قوانين صارمة، ومعاقبة السلوك المتهور، واتباع تعليمات السلامة.</span></li>
+                    <li><strong>ما أسباب الكوارث البشرية؟</strong> <br> <span class="text-muted">الأفعال البشرية، الخطأ البشري، الفشل التقني، تجاهل لوائح السلامة.</span></li>
+                    <li><strong>لماذا الكوارث البشرية ضارة؟</strong> <br> <span class="text-muted">تدمر النظم البيئية، تلوث المياه، تسبب الأمراض، فقدان الأرواح، الدمار، الانهيار الاقتصادي، التشريد، وآثار نفسية.</span></li>
+                </ol>
+                <p><strong>اختيار من متعدد:</strong></p>
+                <ul style="list-style:none; padding-right:0;">
+                    <li class="mcq-option"><strong>5.</strong> الكلمة التي تحتها خط "they" تشير إلى <strong>b) الحروب</strong></li>
+                    <li class="mcq-option"><strong>6.</strong> التلوث من المصانع يمكن أن <strong>d) يتلف</strong> البيئة.</li>
+                    <li class="mcq-option"><strong>7.</strong> الكوارث البشرية <strong>a) مختلفة عن</strong> الكوارث الطبيعية.</li>
+                    <li class="mcq-option"><strong>8.</strong> يمكن منع الكوارث <strong>b) البشرية</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- قطعة 5 -->
+            <div class="card">
+                <h3><i class="fas fa-lightbulb"></i> 5. علمي دور أول 2025 <span class="badge">توماس إديسون</span></h3>
+                <div class="passage">
+                    <p>كان توماس ألفا إديسون واحداً من العباقرة البارزين في تاريخ التكنولوجيا. كان مخترعاً ورجل أعمال أمريكياً. ولد في 11 فبراير 1847 في ولاية أوهايو الأمريكية. عاش لاحقاً في نيوجيرسي، حيث عمل في مكان يُسمى "مينلو بارك". أطلق عليه الناس لقب "ساحر مينلو بارك" بسبب الأشياء الرائعة التي اخترعها. حصل على براءات اختراع لأكثر من ألف اختراع (1093). كما أنشأ أول مختبر أبحاث صناعي في العالم.</p>
+                    <p>تلقى إديسون تعليماً رسمياً قليلاً جداً في طفولته ولم يذهب إلى المدرسة سوى ثلاثة أشهر. قال معلمه إن إديسون غبي جداً لدرجة أنه لا يمكنه التعلم. صُدمت والدته وانزعجت لكنها لم تدع كلمات المعلم السلبية تثبط عزيمتها أو عزيمة ابنها. قامت بتعليمه القراءة والكتابة والحساب. كان إديسون طفلاً فضولياً للغاية وعلّم نفسه الكثير بالقراءة بمفرده. كان مفتوناً بالعلم وعمل في مختبره لساعات طويلة. اخترع المصباح الكهربائي، والفونوغراف، وكاميرا الصور المتحركة. كما أجرى تحسينات على التلغراف والهاتف. كان يعتقد أن اختراع أشياء مفيدة هو طريقة رائعة ليصبح غنياً ومشهوراً ويساعد الآخرين في نفس الوقت. توفي في 18 أكتوبر 1931.</p>
+                </div>
+                <p><strong>أجب:</strong></p>
+                <ol class="question-list">
+                    <li><strong>لماذا سُمي توماس إديسون بـ "ساحر مينلو بارك"؟</strong> <br> <span class="text-muted">بسبب الأشياء الرائعة التي اخترعها.</span></li>
+                    <li><strong>كم عدد براءات الاختراع التي حصل عليها؟</strong> <br> <span class="text-muted">1093 (أكثر من ألف).</span></li>
+                    <li><strong>كيف شعرت والدة إديسون عندما سمعت كلمات المعلم؟</strong> <br> <span class="text-muted">صُدمت وانزعجت.</span></li>
+                    <li><strong>كانت والدته حكيمة. ناقش.</strong> <br> <span class="text-muted">لم تدع الكلمات السلبية تثبط ابنها، بل علمته بنفسها وشجعت فضوله.</span></li>
+                </ol>
+                <p><strong>اختيار من متعدد:</strong></p>
+                <ul style="list-style:none; padding-right:0;">
+                    <li class="mcq-option"><strong>5.</strong> كان إديسون طفلاً <strong>a) فضولياً</strong></li>
+                    <li class="mcq-option"><strong>6.</strong> لعبت والدته دوراً <strong>d) حيوياً</strong> في حياته.</li>
+                    <li class="mcq-option"><strong>7.</strong> والدته <strong>c) شجعته</strong> على الاعتماد على نفسه.</li>
+                    <li class="mcq-option"><strong>8.</strong> كان المعلم <strong>a) مخطئاً</strong> عندما قال إن إديسون غبي.</li>
+                </ul>
+            </div>
+
+            <!-- قطعة 6 -->
+            <div class="card">
+                <h3><i class="fas fa-map-marked-alt"></i> 6. أدبي دور أول 2025 <span class="badge">ألاسكا</span></h3>
+                <div class="passage">
+                    <p>ألاسكا هي أكبر ولاية أمريكية من حيث المساحة. تقع إلى الشمال الغربي من كندا. إنها خمس مساحة الولايات المتحدة بأكملها. أصبحت الولاية رقم 49 في عام 1959. إنها ولاية جذابة مليئة بالريف الغني والحياة البرية. توجد فيها سلاسل جبلية متنوعة. كما فيها أعلى جبل في أمريكا الشمالية، جبل ماكينلي. بها 100,000 نهر جليدي، و3,000 نهر، و3 ملايين بحيرة. تعيش العديد من أنواع الحيوانات مثل الدببة والنسور والذئاب وأسود البحر والحيتان في محيطاتها وغاباتها الخضراء وجبالها المغطاة بالثلوج. تُعتبر واحدة من الأماكن المعقولة التكلفة للعيش في الولايات المتحدة. يعيش فيها حوالي 650,000 نسمة. حوالي 40٪ من سكانها يعيشون في أكبر مدينة، أنكوريج، في الجنوب لأن معظم الولاية يصعب الوصول إليها بالسيارة. يمكن أن يكون الطقس بارداً ومظلماً جداً في الشتاء. ومع ذلك، فإن الظروف مثالية لأنشطة مثيرة مثل التزلج، والتزلج على الجليد، وصيد الأسماك على الجليد، أو التزلج بالكلاب. ألاسكا مكان رائع. كل عام، تستقبل ملايين الزوار الذين ينفقون المال على الإقامة والطعام والأنشطة الترفيهية. إنها مثل أي مكان آخر على وجه الأرض.</p>
+                </div>
+                <p><strong>أجب:</strong></p>
+                <ol class="question-list">
+                    <li><strong>أين تقع ألاسكا؟</strong> <br> <span class="text-muted">إلى الشمال الغربي من كندا.</span></li>
+                    <li><strong>ما أنواع الحيوانات التي تعيش في ألاسكا؟</strong> <br> <span class="text-muted">الدببة، النسور، الذئاب، أسود البحر، الحيتان، إلخ.</span></li>
+                    <li><strong>متى أصبحت ألاسكا الولاية رقم 49؟</strong> <br> <span class="text-muted">1959.</span></li>
+                    <li><strong>كم عدد سكان ألاسكا؟</strong> <br> <span class="text-muted">حوالي 650,000.</span></li>
+                    <li><strong>لماذا يعيش معظم السكان في أنكوريج؟</strong> <br> <span class="text-muted">لأن معظم الولاية يصعب الوصول إليها بالسيارة.</span></li>
+                </ol>
+                <p><strong>اختيار من متعدد:</strong></p>
+                <ul style="list-style:none; padding-right:0;">
+                    <li class="mcq-option"><strong>6.</strong> الحياة في ألاسكا <strong>a) معقولة التكلفة</strong></li>
+                    <li class="mcq-option"><strong>7.</strong> الطقس في ألاسكا <strong>b) بارد</strong> جداً في الشتاء.</li>
+                    <li class="mcq-option"><strong>8.</strong> ألاسكا ولاية <strong>c) مذهلة</strong></li>
+                    <li class="mcq-option"><strong>9.</strong> يوجد <strong>a) 3,000,000</strong> بحيرة في ألاسكا.</li>
+                    <li class="mcq-option"><strong>10.</strong> ألاسكا ولاية <strong>b) كبيرة</strong> جداً.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ============ TAB 4: PARAGRAPH ============ -->
+        <div class="tab-content" id="tab-paragraph">
+            <div class="section-title"><i class="fas fa-pen-fancy"></i> كتابة البراجراف</div>
+
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> عن السؤال</h3>
+                <p><strong>المطلوب:</strong> كتابة براجراف من <strong>120 كلمة</strong> حول موضوع معين.</p>
+                <p><strong>الدرجة:</strong> علمي 5، أدبي 6.</p>
+                <p><strong>الخطوات:</strong> اترك مسافة بادئة (indent)، اكتب مقدمة عامة، ثم جسم البراجراف (3 جمل على الأقل) مع أدوات ربط، وخاتمة تلخص الفكرة.</p>
+            </div>
+
+            <!-- نماذج البراجراف -->
+            <div class="paragraph-sample">
+                <strong>1. تأثير وسائل التواصل الاجتماعي على الشباب</strong><br>
+                لوسائل التواصل الاجتماعي تأثير كبير على الشباب في الوقت الحاضر. لقد غيرت طريقة تواصل الشباب وتعلمهم وقضاء وقت فراغهم. أولاً، تساعد وسائل التواصل الاجتماعي الطلاب على التواصل بسهولة مع أصدقائهم ومعلميهم. كما يمكنهم البحث عن المعلومات وتعلم مهارات جديدة من خلال مقاطع الفيديو التعليمية والمواقع الإلكترونية. ثانياً، تساعد الناس على معرفة ما يحدث حول العالم في وقت قصير جداً. علاوة على ذلك، يستخدم العديد من الشباب وسائل التواصل الاجتماعي لإظهار مواهبهم وإبداعهم. بالإضافة إلى ذلك، يمكن أن تساعد الطلاب على الدراسة عبر الإنترنت وتبادل الأفكار مع الآخرين. ومع ذلك، قد يسبب استخدام وسائل التواصل الاجتماعي لساعات طويلة مشاكل مثل إضاعة الوقت وضعف التركيز وقلة النشاط البدني. قد يصبح بعض الشباب مدمنين عليها أيضاً. في الختام، لوسائل التواصل الاجتماعي مزايا وعيوب. لذلك، يجب على الشباب استخدامها بحكمة للاستفادة منها دون الإضرار بحياتهم.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>2. كيف يمكننا حماية البيئة؟</strong><br>
+                حماية البيئة أمر مهم جداً لحياتنا ومستقبل كوكبنا. تمنحنا البيئة هواءً نظيفاً وماءً وطعاماً والعديد من الموارد الطبيعية. ومع ذلك، فإن التلوث وإهدار الموارد يسببان مشاكل خطيرة. لذلك، يجب أن نعمل معاً لحماية بيئتنا. أولاً، يجب أن نقلل التلوث برمي القمامة في الأماكن الصحيحة وإعادة تدوير الورق والبلاستيك والزجاج. ثانياً، يجب أن نوفر الماء والكهرباء بإغلاق الصنابير والأضواء عندما لا نحتاجها. علاوة على ذلك، يمكن أن تساعد زراعة المزيد من الأشجار في جعل الهواء أنظف وتقليل الاحتباس الحراري. بالإضافة إلى ذلك، يجب على الناس استخدام وسائل النقل العامة أو الدراجات لتقليل تلوث الهواء الناجم عن السيارات. أخيراً، يجب على الحكومات والمدارس نشر الوعي حول أهمية حماية الطبيعة. في الختام، حماية البيئة هي مسؤولية الجميع، والأفعال الصغيرة يمكن أن تحدث فرقاً كبيراً في جعل عالمنا أنظف وأكثر صحة.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>3. الصحة أغلى من الثروة</strong><br>
+                الصحة من أهم الأشياء في حياة الإنسان. يعتقد الكثير من الناس أن الصحة أهم من الثروة. هناك أسباب عديدة تجعل الناس يهتمون بصحتهم ويحمونها. أولاً، بدون صحة جيدة، يصبح المال عديم الفائدة لأن الشخص المريض قد ينفق كل أمواله على العلاج ولا يزال يعاني. ثانياً، الوقاية خير من العلاج، لذلك يجب على الناس الاعتناء بصحتهم قبل أن يمرضوا. على سبيل المثال، يجب أن يأكلوا طعاماً صحياً، ويشربوا كمية كافية من الماء، ويتجنبوا التدخين والوجبات السريعة. علاوة على ذلك، فإن ممارسة الرياضة بانتظام تساعد الجسم على البقاء قوياً ونشطاً. بالإضافة إلى ذلك، النوم الجيد وتقليل التوتر مهمان جداً للصحة البدنية والعقلية. أخيراً، يجب أن نتذكر أن الصحة كنز لا يقدر بثمن لا يمكن شراؤه بالمال. في الختام، المال يمكن أن يسهل الحياة، لكن الصحة هي المفتاح الحقيقي للسعادة والنجاح. لذلك، يجب على الجميع محاولة الحفاظ على صحتهم واتباع عادات جيدة في الحياة اليومية.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>4. تأثير الآلات على الناس</strong><br>
+                للآلات تأثير كبير على حياة الناس اليوم. إنها تجعل حياتنا اليومية أسهل وتوفر علينا الكثير من الوقت والجهد. أولاً، تساعدنا الآلات في المنزل. على سبيل المثال، الغسالات والثلاجات والمكانس الكهربائية تجعل الأعمال المنزلية أسهل. ثانياً، الآلات مهمة جداً في المدارس وأماكن العمل. تساعد أجهزة الكمبيوتر الطلاب على الدراسة والبحث عن المعلومات وإتمام واجباتهم المدرسية. كما تساعد العمال على إنهاء مهامهم بسرعة ودقة. علاوة على ذلك، تحسن الآلات التواصل لأن الناس يمكنهم استخدام الهواتف المحمولة والإنترنت للتواصل مع الآخرين بسهولة. بالإضافة إلى ذلك، تساعد الآلات الحديثة الأطباء في علاج المرضى والمزارعين في إنتاج المزيد من الطعام. ومع ذلك، لا ينبغي للناس الاعتماد على الآلات كثيراً لأن الإفراط في استخدامها قد يجعلهم كسالى. في الختام، غيرت الآلات حياتنا بطرق إيجابية عديدة، ويجب أن نستخدمها بحكمة للاستمتاع بفوائدها دون أن نصبح معتمدين عليها.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>5. الحياة الجامعية مقابل الحياة المدرسية</strong><br>
+                الحياة المدرسية والحياة الجامعية مرحلتان مهمتان في حياة الطالب، لكنهما مختلفتان في نواحٍ عديدة. أولاً، طلاب الجامعة أكثر استقلالية من طلاب المدارس. يمكنهم تنظيم وقتهم والدراسة بأنفسهم. ثانياً، هم أكثر مسؤولية عن تعلمهم ومهامهم اليومية. علاوة على ذلك، تساعد الحياة الجامعية الطلاب على تطوير مهارات اتخاذ القرار لأنهم يختارون مقرراتهم ويخططون لمستقبلهم المهني. بالإضافة إلى ذلك، يمكن للطلاب المشاركة في العديد من الأنشطة مثل النوادي والرياضة والعمل التطوعي. من ناحية أخرى، الحياة المدرسية أكثر تنظيماً وهيكلة. يوجه المعلمون الطلاب عن كثب ويساعدونهم في دراستهم. يتبع الطلاب جدولاً زمنياً ثابتاً ويدرسون نفس المواد. كما يقضون وقتاً أطول مع زملائهم ويتلقون الدعم من معلميهم وأولياء أمورهم. في الختام، بينما توفر الحياة المدرسية التوجيه والدعم، تعد الحياة الجامعية الطلاب لاستقلالية ومسؤولية أكبر.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>6. قصة قرأتها مؤخراً</strong><br>
+                تساعدنا القصص دائماً على تعلم دروس مهمة بطريقة ممتعة. مؤخراً، قرأت قصة شهيرة بعنوان "كونت مونت كريستو". إنها قصة مثيرة جداً عن العدالة والانتقام. أولاً، تدور القصة حول بحار شاب يدعى إدموند دانتيس يُسجن ظلماً. ثم يقضي سنوات عديدة في السجن، لكنه يتعلم الكثير ويصبح ذكياً جداً. علاوة على ذلك، يلتقي برجل عجوز يخبره عن كنز مخفي. بعد ذلك، يهرب إدموند، ويعثر على الكنز، ويصبح غنياً جداً. بالإضافة إلى ذلك، يغير هويته ويعود للانتقام من الأشخاص الذين آذوه. على سبيل المثال، يخطط بعناية ويعاقبهم بطرق مختلفة. أخيراً، تعلمنا القصة أن الصبر والعدالة مهمان. في الختام، استمتعت حقاً بهذه القصة لأنها مليئة بالإثارة والأفكار الذكية والدروس القوية.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>7. الوسطية</strong><br>
+                الوسطية والحياء قيمتان مهمتان في الإسلام تساعدان الناس على عيش حياة متوازنة ومحترمة. في البداية، توجه هذه القيم المسلمين في سلوكهم اليومي وقراراتهم. من ناحية، تعني الوسطية العيش بحياة متوازنة بين التطرفين. أولاً، يجب على المسلم تجنب المبالغة أو الإهمال في العبادة والإنفاق والسلوك. على سبيل المثال، يعلمنا الإسلام ألا نصلي طوال الليل ونتجاهل عائلاتنا. ثانياً، ينصحنا بعدم إهدار المال أو الجشع، بل بالإنفاق بحكمة. من ناحية أخرى، الحياء هو قيمة أخلاقية تحمي الناس من السلوك المخزي. علاوة على ذلك، يشمل غض البصر والتحدث بأدب واللباس المحتشم. علاوة على ذلك، يبدأ الحياء من القلب ويظهر بوضوح في أفعالنا. بالإضافة إلى ذلك، يجعل الناس يحترموننا ويثقون بنا. قال النبي محمد صلى الله عليه وسلم: "الحياء شعبة من الإيمان". في الختام، كل من الوسطية والحياء قيمتان أساسيتان تؤديان إلى السلام في المجتمع واحترام الذات. لذلك، يتبع المسلم الحقيقي الوسط ويتصرف بكرامة واحترام.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>8. مزايا وعيوب الإنترنت</strong><br>
+                أصبح الإنترنت جزءاً مهماً من حياتنا اليومية، وله مزايا وعيوب. أولاً، يجعل الإنترنت التواصل سهلاً جداً. يمكن للناس التحدث مع أصدقائهم وعائلاتهم في أي مكان في العالم في ثوانٍ. ثانياً، هو مصدر رائع للمعلومات. يمكن للطلاب البحث عن الدروس ومشاهدة مقاطع الفيديو التعليمية وتحسين مهاراتهم. علاوة على ذلك، يساعد الإنترنت الناس على العمل والدراسة من المنزل، مما يوفر الوقت والجهد. بالإضافة إلى ذلك، يقدم الترفيه مثل الألعاب والأفلام ووسائل التواصل الاجتماعي. ومع ذلك، هناك أيضاً بعض العيوب. على سبيل المثال، استخدام الإنترنت لفترة طويلة يمكن أن يؤثر على صحتنا ويضيع وقتنا. علاوة على ذلك، قد تحتوي بعض المواقع على معلومات ضارة أو كاذبة. في الختام، الإنترنت مفيد جداً، لكن يجب أن نستخدمه بحكمة لتجنب آثاره السلبية.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>9. أبو بكر الصديق</strong><br>
+                أبو بكر الصديق رضي الله عنه من أعظم صحابة النبي محمد صلى الله عليه وسلم وأول الخلفاء في الإسلام. عُرف بصدقه وإيمانه القوي وحكمته. أولاً، كان أبو بكر أقرب أصدقاء النبي، وكان يؤمن به دائماً دون شك. على سبيل المثال، دعم النبي في الأوقات الصعبة، خاصة في الأيام الأولى للإسلام. ثانياً، أظهر شجاعة وقيادة كبيرة عندما أصبح أول خليفة بعد وفاة النبي. عمل بجد للحفاظ على وحدة المسلمين وحارب من حاول تفريقهم. علاوة على ذلك، كان أبو بكر كريماً ولطيفاً. أنفق ماله لمساعدة الفقراء ودعم الإسلام. بالإضافة إلى ذلك، لعب دوراً مهماً في جمع القرآن الكريم في كتاب واحد لحمايته. في الختام، أبو بكر الصديق مثال عظيم للإيمان والولاء والقيادة، ويجب على جميع المسلمين التعلم من حياته.
+            </div>
+
+            <div class="paragraph-sample">
+                <strong>10. دور الوالدين في تربية الأبناء</strong><br>
+                يلعب الوالدان دوراً مهماً جداً في تربية أطفالهم وتشكيل مستقبلهم. أولاً، يعلم الوالدان أطفالهم القيم الأساسية مثل الصدق والاحترام والمسؤولية. تساعد هذه القيم الأطفال على أن يصبحوا أعضاء صالحين في المجتمع. ثانياً، يقدم الوالدان الحب والرعاية، مما يجعل الأطفال يشعرون بالأمان والثقة. علاوة على ذلك، يوجه الوالدان أطفالهم في تعليمهم من خلال مساعدتهم على الدراسة وتشجيعهم لتحقيق أهدافهم. بالإضافة إلى ذلك، يعلمونهم كيفية مواجهة المشاكل واتخاذ القرارات الصحيحة في الحياة. على سبيل المثال، عندما يفشل الطفل في اختبار، يجب على الوالدين دعمه وتحفيزه للمحاولة مرة أخرى. أخيراً، الآباء هم قدوة، لذلك يتعلم الأطفال من أفعالهم أكثر من كلماتهم. في الختام، الوالدان هما السبب الرئيسي وراء نجاح الطفل وسلوكه الجيد، لذلك يجب عليهما بذل قصارى جهدهما لتربية أطفالهما بطريقة سليمة.
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-graduation-cap"></i> أزهر سكيلز 2027 &bull; إعداد دقيق للقسمين العلمي والأدبي &bull; I-COURSES
+        </div>
+    </div>
+
+    <script>
+        // ----- TABS -----
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            dialogues: document.getElementById('tab-dialogues'),
+            translation: document.getElementById('tab-translation'),
+            reading: document.getElementById('tab-reading'),
+            paragraph: document.getElementById('tab-paragraph')
+        };
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                Object.values(tabContents).forEach(c => c.classList.remove('active'));
+                const tabId = this.dataset.tab;
+                if (tabContents[tabId]) {
+                    tabContents[tabId].classList.add('active');
+                }
+            });
+        });
+
+        // ----- COLLAPSE TOGGLE -----
+        function toggleCollapse(el) {
+            const wrapper = el.closest('.collapse-wrapper');
+            const body = wrapper.querySelector('.collapse-body');
+            const icon = el.querySelector('i');
+            if (body) {
+                body.classList.toggle('open');
+                el.classList.toggle('open');
+            }
+        }
+
+        // ----- وضع الطباعة (تبديل الألوان) -----
+        const toggleBtn = document.getElementById('togglePrintMode');
+        const body = document.body;
+        let printMode = false;
+
+        toggleBtn.addEventListener('click', function() {
+            printMode = !printMode;
+            body.classList.toggle('print-mode', printMode);
+            this.innerHTML = printMode ?
+                '<i class="fas fa-palette"></i> الوضع الملون' :
+                '<i class="fas fa-print"></i> وضع الطباعة';
+        });
+
+        // عند الطباعة نضبط تلقائياً (لكن المستخدم يتحكم يدوياً أيضاً)
+        window.addEventListener('beforeprint', function() {
+            // يمكن إجبار الوضع الرمادي عند الطباعة، لكننا نترك للمستخدم اختياره
+            // ويمكن إضافة class تلقائي، لكن الأفضل ترك الزر.
+        });
+    </script>
+</body>
+</html>
